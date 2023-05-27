@@ -12,7 +12,6 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-    //tests git1
     public IActionResult Index()
     {
         return View();
