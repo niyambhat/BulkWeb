@@ -36,6 +36,10 @@ namespace BulkyWeb.Controllers
             {
                 ModelState.AddModelError("name", "The DisplayOrder cannot match the name");
             }
+            if (obj.Name == "test")
+            {
+                ModelState.AddModelError("", "Test is an invalid value");
+            }
             if (ModelState.IsValid) { //ModalState checks the validaton in the Model, the validation messegein view is controlled in view
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
