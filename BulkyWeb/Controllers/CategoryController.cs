@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using BulkyWeb.Data;
@@ -29,6 +30,8 @@ namespace BulkyWeb.Controllers
         {
             return View();
         }
+
+
         [HttpPost]
         public IActionResult Create(Category obj)
         {
@@ -46,9 +49,30 @@ namespace BulkyWeb.Controllers
                 return RedirectToAction("Index");
             }
             return View();
-
-            //return View(); To stay in the same view
-            //return RedirectToAction("Index", "Category"); to explicitly define
         }
+
+
+        public IActionResult Edit(int id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category categoryFromDb = _db.Categories.Find(id); // Method one
+            Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id); // Method two
+            Category? categoryFromDb3 = _db.Categories.Where(u => u.Id == id).FirstOrDefault(); // Method three
+            return View(categoryFromDb);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(Category obj)
+        {
+            _db.Categories.Update(obj);
+            _db.SaveChanges();
+            return View();
+        }
+
+
     }
 }
