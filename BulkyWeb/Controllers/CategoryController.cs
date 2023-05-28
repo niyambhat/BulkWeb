@@ -24,5 +24,27 @@ namespace BulkyWeb.Controllers
             List<Category> objCategorylist = _db.Categories.ToList();
             return View(objCategorylist);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Category obj)
+        {
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "The DisplayOrder cannot match the name");
+            }
+            if (ModelState.IsValid) { //ModalState checks the validaton in the Model, the validation messegein view is controlled in view
+                _db.Categories.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+
+            //return View(); To stay in the same view
+            //return RedirectToAction("Index", "Category"); to explicitly define
+        }
     }
 }
