@@ -1,6 +1,14 @@
 ﻿@model List<Category>
 
-<h1>Category</h1>
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6 text-primary">
+            <h1>Category</h1>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-dark"><i class="bi bi-plus-circle"></i> Create a Category</a>
+        </div>
+    </div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -9,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var obj in Model.OrderBy(u=>u.DisplayOrder))
+        @foreach (var obj in Model.OrderBy(u => u.DisplayOrder))
         {
             <tr>
                 <td>@obj.Name</td>
@@ -18,3 +26,5 @@
         }
     </tbody>
 </table>
+</div>
+
