@@ -32,9 +32,10 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            //if (obj.Name == obj.DisplayOrder.ToString()) {
-            //    ModelState.AddModelError()
-            //}
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "The DisplayOrder cannot match the name");
+            }
             if (ModelState.IsValid) { //ModalState checks the validaton in the Model, the validation messegein view is controlled in view
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
