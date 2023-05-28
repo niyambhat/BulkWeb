@@ -5,25 +5,22 @@
 <div class="container">
     <form method="post">
         <div class="border p-3 mt-4">
-            <div class="row">
-                <h2 class="text-primary">Edit Category</h2>
+            <div class="row danger">
+                <h2 class="text-primary">Delete Category</h2>
                 <hr />
             </div>
             <input asp-for="Id" class="form-control" hidden>
-            <div asp-validation-summary="ModelOnly"></div>
             <div class="form-group pb-3">
                 <label asp-for="Name">Category Name</label>
-                <input asp-for="Name" class="form-control">
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Name" class="form-control" disabled>
             </div>
 
             <div class="form-group">
                 <label asp-for="DisplayOrder">Display Order</label>
-                <input asp-for="DisplayOrder" class="form-control">
-                <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                <input asp-for="DisplayOrder" class="form-control" disabled>
             </div>
             <div class="row pt-4">
-                <div class="col-6"><button type="submit" class="btn btn-primary form-control">Update</button></div>
+                <div class="col-6"><button type="submit" asp-action="DeletePOST" class="btn btn-primary form-control danger">Delete</button></div>
                 <div class="col-6"><a asp-controller="Category" asp-action="Index" class="btn btn-outline-secondary form-control">Go back to categories</a></div>
             </div>
         </div>
