@@ -17,10 +17,12 @@ namespace BulkyWeb.Controllers
         {
             _db = db;
         }
+        //accesing the db ends
+
         public IActionResult Index()
         {
             List<Category> objCategorylist = _db.Categories.ToList();
-            return View();
+            return View(objCategorylist);
         }
     }
 }
